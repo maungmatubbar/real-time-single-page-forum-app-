@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -33,7 +34,7 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
-    public function signup(Request $request){
+    public function signup(SignupRequest $request){
         User::create($request->all());
         return $this->login($request);
     }
