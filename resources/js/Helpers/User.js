@@ -4,7 +4,7 @@ class User {
     login(data){
         axios.post('/api/auth/login',data)
             .then(res => this.responseAfterLogin(res))
-            .catch(error => console.log(error.response.data))
+            .catch(error => error.response.data)
     }
     responseAfterLogin(res){
         const access_token = res.data.access_token
@@ -41,6 +41,9 @@ class User {
     userId(){
         const payload = Token.payload(AppStorage.getToken())
         return payload.sub
+    }
+    ownId(user_id){
+        return this.userId() == user_id
     }
 }
 
